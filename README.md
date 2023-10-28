@@ -82,6 +82,25 @@ More examples of building structures with this script are in the `examples` dire
 
 Note that differenct structures can be combined into one simulation object with `Combine`. Also coordinates can be manipulated before writing to a lammps file. An examploe of this is shown in `peel_sim.py`.
 
+# Error running conda yml script?
+The packages required are not in the conda repository (for your conda). You could try searching for required packages. For example try "conda search pyyaml | grep 5.1.1"
+Here is my terminal output:
+
+(base) [krishna@fedora bin]$ conda search pyyaml | grep 5.1.1
+Retrying (Retry(total=2, connect=None, read=None, redirect=None, status=None)) after connection broken by 'ProxyError('Cannot connect to proxy.', TimeoutError('timed out'))': /pkgs/r/linux-64/repodata.json
+
+pyyaml                         5.1.1  py27h516909a_0  conda-forge         
+pyyaml                         5.1.1  py27h7b6447c_0  pkgs/main           
+pyyaml                         5.1.1  py36h516909a_0  conda-forge         
+pyyaml                         5.1.1  py36h7b6447c_0  pkgs/main           
+pyyaml                         5.1.1  py37h516909a_0  conda-forge         
+pyyaml                         5.1.1  py37h7b6447c_0  pkgs/main      
+
+This package requires pyyaml==5.1.1=py27h1de35cc_0 which is clearly not available in my conda too. The closest is either py27h516909a_0 or py27h7b6447c_0. Edit the yml file accordingly for missing packages and try again.
+Worked for me. I wouldn't expect any major difference between the two packages (recommended in the yml file and the one I found). Still be aware of what you're doing.
+
+
+
 # Citing
 
 The work contained here has been published in some of my own papers e.g.
@@ -93,6 +112,10 @@ The work contained here has been published in some of my own papers e.g.
  - The Role of Graphene in Enhancing the Material Properties of Thermosetting Polymers https://doi.org/10.1002/adts.201800168
 
 I would appreciate a citation if you any of the code in any published work :) You could cite the graphene oxide structure paper, this github page (if the journal allows), or the latest release on the zenodo repository
+
+
+
+
 
 ```
 @article{sinclair2019modelling,
@@ -120,4 +143,7 @@ I would appreciate a citation if you any of the code in any published work :) Yo
   year      = {2019},
   doi       = {10.5281/zenodo.2548538}
 }
+
+
+
 
